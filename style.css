@@ -1,0 +1,139 @@
+body{
+    overflow: hidden;
+}
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    background-color: aliceblue;
+    opacity: 60%;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+}
+header h1 {
+    color: #000000;
+    opacity: 1 !important;
+    text-shadow: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+}
+
+
+.lilita-one-regular {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
+.bg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+
+}
+.main-form{
+    width: 100%;
+}
+
+form .leftside{
+    position: relative;
+    
+}
+
+form .rightside{
+    position: relative;
+    
+}
+
+
+select, input{
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #e4eaeb ;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+
+}
+
+select{
+    border-radius: 5px;
+}
+
+.amount-done:focus{
+    outline: none;
+}
+
+.subbut{
+    background-color: rgb(8, 184, 8);
+    color: #efe9e9;
+    border-radius: 10px;
+    border: 2px solid #a4a3a3;
+    padding: 15px;
+    transform: translateY(150%);
+    font-size: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 400;
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.2);
+    transition: 0.35s ease-in-out;
+}
+
+
+
+.subbut:hover{
+    background-color: rgb(60, 207, 60);
+    padding: 13px;
+    font-size: 17px;
+    transition: 0.35s ease-in-out;
+    cursor:pointer;
+}
+
+.enter{
+    background-color: rgb(101, 177, 101);
+    color: rgb(0,0,0);
+    transition: 300ms;
+}
+
+.enter:focus{
+    outline: none;
+    background-color: rgb(109, 194, 109);
+    transition: 300ms;
+}
+
+form *:focus{
+    outline: none;
+}
+
+form input, form select{
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.2);
+    color: black;
+}
+
+form input.enter::placeholder{
+    color: rgb(75, 73, 73);
+}
+
+.input-container{
+    white-space: nowrap;
+    overflow: none;
+}
+

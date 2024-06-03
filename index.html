@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Converter</title>
+    <link rel="website icon" type="image/png" href="./images/icon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <img class="bg" src="./images/bg.jpg">
+
+    <div class="container">
+        <form class="main-form">
+            <div class="leftside">
+                <select required name="currency" id="currency-from" onchange="updateCurrencyIcon('from')">
+                    <option hidden>Select Currency Type</option>
+                    <option value="GBP" data-icon="&#163;">Great British Pounds (GBP)</option>
+                    <option value="EUR" data-icon="&#8364;">Euros (EUR)</option>
+                    <option value="USD" data-icon="&#36;">US Dollar (USD)</option>
+                    <option value="JPY" data-icon="&#165;">Japanese Yen (JPY)</option>
+                    <option value="THB" data-icon="&#3647;">Thai Baht (THB)</option>
+                </select>
+                <div class="input-container">
+                    <span id="currency-icon-from"></span>
+                    <input step="1.00" class="enter" type="number" name="amount" id="amount-from" placeholder="Enter amount" required>
+                </div>
+            </div>
+            <br><br><br><br>
+            <div class="rightside">
+                <select required name="currency" id="currency-to" onchange="updateCurrencyIcon('to')">
+                    <option hidden>Convert to</option>
+                    <option value="GBP" data-icon="&#163;">Great British Pounds (GBP)</option>
+                    <option value="EUR" data-icon="&#8364;">Euros (EUR)</option>
+                    <option value="USD" data-icon="&#36;">US Dollar (USD)</option>
+                    <option value="JPY" data-icon="&#165;">Japanese Yen (JPY)</option>
+                    <option value="THB" data-icon="&#3647;">Thai Baht (THB)</option>
+                </select>
+                <div class="input-container">
+                    <span id="currency-icon-to"></span>
+                    <input step="0.01" class="amount-done" type="text" name="amount" id="amount-to" placeholder="Amount" readonly>
+                </div>
+            </div>
+
+            <button type="button" class="subbut" id="calculate-button">Calculate!</button>
+        </form>
+    </div>
+
+    <header>
+        <h1 class="lilita-one-regular">Currency Exchange</h1>
+    </header>    
+
+    <script>
+        document.getElementById('amount-from').addEventListener('blur', function (event) {
+            const value = parseFloat(event.target.value);
+            if (!isNaN(value)) {
+                event.target.value = value.toFixed(2);
+            }
+        });
+
+        const exchangeRates = {
+            'GBP': { 'GBP': 1, 'EUR': 1.17, 'USD': 1.25, 'JPY': 140.94, 'THB': 44.85 },
+            'EUR': { 'EUR': 1, 'GBP': 0.85, 'USD': 1.07, 'JPY': 120.45, 'THB': 38.45 },
+            'USD': { 'USD': 1, 'GBP': 0.80, 'EUR': 0.93, 'JPY': 112.34, 'THB': 35.80 },
+            'JPY': { 'JPY': 1, 'GBP': 0.0071, 'EUR': 0.0083, 'USD': 0.0089, 'THB': 0.32 },
+            'THB': { 'THB': 1, 'GBP': 0.022, 'EUR': 0.026, 'USD': 0.028, 'JPY': 3.14 }
+        };
+
+        document.getElementById('calculate-button').addEventListener('click', function () {
+            const fromCurrency = document.getElementById('currency-from').value;
+            const toCurrency = document.getElementById('currency-to').value;
+            const amount = parseFloat(document.getElementById('amount-from').value);
+
+            if (fromCurrency && toCurrency && !isNaN(amount)) {
+                const conversionRate = exchangeRates[fromCurrency][toCurrency];
+                const convertedAmount = (amount * conversionRate).toFixed(2);
+                document.getElementById('amount-to').value = convertedAmount;
+            } else {
+                alert('Please fill out all fields correctly.');
+            }
+        });
+
+        function updateCurrencyIcon(type) {
+            const select = document.getElementById(`currency-${type}`);
+            const icon = document.getElementById(`currency-icon-${type}`);
+            const selectedOption = select.options[select.selectedIndex];
+            const iconHtml = selectedOption.getAttribute('data-icon');
+            icon.innerHTML = iconHtml ? iconHtml : '';
+        }
+    </script>
+</body>
+</html>
